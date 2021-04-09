@@ -1,18 +1,22 @@
 package main
 
 import (
-	"autorecruit/db"
-	"autorecruit/db/model"
+	"fmt"
+	"net/http"
+	"os"
 )
 
-
-
 func main() {
-	Db := db.InitDB()
+	// PORT := 8000
+	// fmt.Println(os.Getenv("PORT"))
+	server := http.Server{
+		Addr: ":" + os.Getenv("PORT"),
+		
+	}
+	http.HandleFunc("/hello/", hello)
+	server.ListenAndServe()
+}
 
-	user := model.User{ID:1, CompanyName: "olacodes", Email: "olatundesodiq@gmail.com", Password: "olacodes"}
-	
-	Db.Create(&user)
-
-
+func hello(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello!")
 }
