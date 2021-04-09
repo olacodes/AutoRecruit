@@ -7,8 +7,6 @@ import (
 )
 
 func main() {
-	// PORT := 8000
-	// fmt.Println(os.Getenv("PORT"))
 	server := http.Server{
 		Addr: ":" + os.Getenv("PORT"),
 		
